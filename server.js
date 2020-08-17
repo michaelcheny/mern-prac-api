@@ -2,16 +2,19 @@ const express = require("express");
 const dotenv = require("dotenv");
 // const logger = require("./middleware/logger");
 const morgan = require("morgan");
+const connectDB = require("./config/db");
+// LOAD ENV variables
+dotenv.config({ path: "./config/config.env" });
+
+// Connect to DB
+connectDB();
 
 // Route Files
 const bootcamps = require("./routes/bootcamps");
 
-// LOAD ENV variables
-dotenv.config({ path: "./config/config.env" });
-
 const app = express();
 
-// Middleware starts |||| app.use() <- is middleware
+//##### Middleware starts |||| app.use() <- is middleware #########
 
 // Dev logging middleware
 if (process.env.NODE_ENV === "development") {
